@@ -3,8 +3,36 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const { Circle, Square, Triangle } = require('./lib/shapes');
 
+// Function to write logo SVG file
 function writeToFile(fileName, answers) {
-  
+  let shapeOption;
+  let svgString = '';
+
+  // If else to take user input and correspond the shape and color
+  if (answers.shape === "Circle") {
+    shapeOption = new Circle();
+    svgString += `<circle cx="150" cy="100" r="80" fill="${answers.shapesColor}"/>`;
+  } else if (answers.shape === "Square") {
+    shapeOption = new Square();
+    svgString += `<rect x="72" y="35" width="150" height="150" fill="${answers.shapesColor}"/>`;
+  } else {
+    shapeOption = new Triangle();
+    svgString += `<polygon points="150, 18 244, 182 56, 182" fill="${answers.shapesColor}"/>`;
+  }
+
+  // Create the content inside the logo.svg file
+  const svgContent = `
+  <svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+
+    ${svgString}
+    
+    <text x="150" y="125" font-size="60" text-anchor="middle" fill="${answers.textColor}">${answers.logoText}</text>
+    
+  </svg>`;
+
+  fs.writeFile(fileName, svgContent, (err) => {
+    err ? console.error(err) : console.log('Generated logo.svg');
+  });
 }
 
 // Function to prompt questions
