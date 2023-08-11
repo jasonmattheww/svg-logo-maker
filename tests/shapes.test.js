@@ -6,7 +6,7 @@ describe('Circle', () => {
   test('test to see if circle renders a green background', () => {
     const shape = new Circle();
     shape.setColor("green");
-    expect(shape.render()).toEqual('<circle cx="25" cy="75" r="20" fill="green" />');
+    expect(shape.render()).toEqual('<circle cx="150" cy="100" r="80" fill="green" />');
   });
 });
 
@@ -14,7 +14,7 @@ describe('Square', () => {
   test('test to see if square renders a blue background', () => {
     const shape = new Square();
     shape.setColor("blue");
-    expect(shape.render()).toEqual('<rect x="10" y="10" width="30" height="30" fill="blue" />');
+    expect(shape.render()).toEqual('<rect x="72" y="35" width="150" height="150" fill="blue" />');
   });
 });
 
